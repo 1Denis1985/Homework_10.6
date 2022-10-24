@@ -1,0 +1,1021 @@
+{
+	"info": {
+		"_postman_id": "686c19a0-0ded-43da-965a-f38bd6392edd",
+		"name": "Homework10.6",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23826021"
+	},
+	"item": [
+		{
+			"name": "smokeTesting",
+			"item": [
+				{
+					"name": "About200",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Станица About code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/app/about",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"app",
+								"about"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pets200",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Страница Pets code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/app/pets",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"app",
+								"pets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Contact200",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Стрвница Контакты code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/app/contact",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"app",
+								"contact"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Поиск работает\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://130.193.37.179/api/pet/?page=1&page_size=6&search=мухтар",
+							"protocol": "http",
+							"host": [
+								"130",
+								"193",
+								"37",
+								"179"
+							],
+							"path": [
+								"api",
+								"pet",
+								""
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "page_size",
+									"value": "6"
+								},
+								{
+									"key": "search",
+									"value": "мухтар"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "four_filtersSmokePositive",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Фильтры работают\", () => {\r",
+									"  const responseJson = pm.response.json();\r",
+									"  pm.expect(responseJson.count).to.eql(4);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/pet/?page=1&page_size=6&species__name=&breed__code=&gender__code=&age=",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"pet",
+								""
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "page_size",
+									"value": "6"
+								},
+								{
+									"key": "species__name",
+									"value": ""
+								},
+								{
+									"key": "breed__code",
+									"value": ""
+								},
+								{
+									"key": "gender__code",
+									"value": ""
+								},
+								{
+									"key": "age",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "forms_shelterSmokePositive",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Форма добавления питомца работает\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "*/*"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "ru-RU,ru;q=0.9"
+							},
+							{
+								"key": "Connection",
+								"value": "keep-alive"
+							},
+							{
+								"warning": "This is a duplicate header and will be overridden by the Content-Type header generated by Postman.",
+								"key": "Content-Type",
+								"value": "application/json;charset=UTF-8"
+							},
+							{
+								"key": "Cookie",
+								"value": ""
+							},
+							{
+								"key": "Origin",
+								"value": "http://130.193.37.179"
+							},
+							{
+								"key": "Referer",
+								"value": "http://130.193.37.179/app/pets"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "pet",
+									"value": "70a41546-3381-4d13-be73-3096ef0cbe0b",
+									"type": "text"
+								},
+								{
+									"key": "firstname",
+									"value": "DENIS",
+									"type": "text"
+								},
+								{
+									"key": "lastname",
+									"value": "MARTENS",
+									"type": "text"
+								},
+								{
+									"key": "phone_num",
+									"value": "+79516145449",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "dosdaos@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "middlename",
+									"value": "Yurèvich",
+									"type": "text"
+								},
+								{
+									"key": "comment",
+									"value": "123",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/api/pet_shelter_req/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"pet_shelter_req",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "forms-shelter(FS)",
+			"item": [
+				{
+					"name": "(FS)Positive",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Форма добавления питомца при правильно заполненных полях работает, status code 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "*/*"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "ru-RU,ru;q=0.9"
+							},
+							{
+								"key": "Connection",
+								"value": "keep-alive"
+							},
+							{
+								"warning": "This is a duplicate header and will be overridden by the Content-Type header generated by Postman.",
+								"key": "Content-Type",
+								"value": "application/json;charset=UTF-8"
+							},
+							{
+								"key": "Cookie",
+								"value": ""
+							},
+							{
+								"key": "Origin",
+								"value": "http://130.193.37.179"
+							},
+							{
+								"key": "Referer",
+								"value": "http://130.193.37.179/app/pets"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "pet",
+									"value": "70a41546-3381-4d13-be73-3096ef0cbe0b",
+									"type": "text"
+								},
+								{
+									"key": "firstname",
+									"value": "DENIS",
+									"type": "text"
+								},
+								{
+									"key": "lastname",
+									"value": "MARTENS",
+									"type": "text"
+								},
+								{
+									"key": "phone_num",
+									"value": "+79516145449",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "dosdaos@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "middlename",
+									"value": "Yurèvich",
+									"type": "text"
+								},
+								{
+									"key": "comment",
+									"value": "123",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/api/pet_shelter_req/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"pet_shelter_req",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "(FS)Blank",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"let responseData = pm.response.json();\r",
+									"let firstName = responseData.firstname;\r",
+									"let middleName = responseData.middlename;\r",
+									"let lastName = responseData.lastname;\r",
+									"let phoneNumber = responseData.phone_num;\r",
+									"let emailValue = responseData.email;\r",
+									"let commit = responseData.comment;\r",
+									"\r",
+									"if (pm.expect(firstName).to.be.include(\"This field may not be blank.\")){\r",
+									"    pm.test(\"Проверка поля Имя на недопустимость ввода пустого значения работает\", function () {\r",
+									"    true;\r",
+									"});\r",
+									"}\r",
+									"if (pm.expect(lastName).to.be.include(\"This field may not be blank.\")){\r",
+									"    pm.test(\"Проверка поля Фамилия на недопустимость ввода пустого значения работает\", function () {\r",
+									"    true;\r",
+									"});\r",
+									"}\r",
+									"if (pm.expect(middleName).to.be.include(\"This field may not be blank.\")){\r",
+									"    pm.test(\"Проверка поля Отчество на недопустимость ввода пустого значения работает\", function () {\r",
+									"    true;\r",
+									"});\r",
+									"}\r",
+									"if (pm.expect(phoneNumber).to.be.include(\"This field may not be blank.\")){\r",
+									"    pm.test(\"Проверка поля Номер на недопустимость ввода пустого значения работает\", function () {\r",
+									"    true;\r",
+									"});\r",
+									"}\r",
+									"if (pm.expect(emailValue).to.be.include(\"This field may not be blank.\")){\r",
+									"    pm.test(\"Проверка поля Email на недопустимость ввода пустого значения работает\", function () {\r",
+									"    true;\r",
+									"});\r",
+									"}\r",
+									"if (pm.expect(commit).to.be.include(\"This field may not be blank.\")){\r",
+									"    pm.test(\"Проверка поля Комментарий на недопустимость ввода пустого значения работает\", function () {\r",
+									"    true;\r",
+									"});\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "*/*"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "ru-RU,ru;q=0.9"
+							},
+							{
+								"key": "Connection",
+								"value": "keep-alive"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=UTF-8"
+							},
+							{
+								"key": "Cookie",
+								"value": "csrftoken=kTJx9JM6shb42Q5J9FUmRqtEoSHNxOo6tB8T89wjFgqob29qbhFHp1uTxc0vfvMz"
+							},
+							{
+								"key": "Origin",
+								"value": "http://130.193.37.179"
+							},
+							{
+								"key": "Referer",
+								"value": "http://130.193.37.179/app/pets"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "pet",
+									"value": "70a41546-3381-4d13-be73-3096ef0cbe0b",
+									"type": "text"
+								},
+								{
+									"key": "firstname",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "lastname",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "middlename",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "phone_num",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "comment",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/api/pet_shelter_req/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"pet_shelter_req",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "(FS)EnterNumberUsername",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"let responseData = pm.response.json();\r",
+									"let firstName = responseData.firstname;\r",
+									"let middleName = responseData.middlename;\r",
+									"let lastName = responseData.lastname;\r",
+									"\r",
+									"if (Number.isFinite(Number(firstName))){\r",
+									"    pm.test(\"Проверка поля Имя на недопустимость ввода числового значения работает\", function () {\r",
+									"    pm.response.to.have.status(666);\r",
+									"});\r",
+									"}\r",
+									"if (Number.isFinite(Number(middleName))){\r",
+									"    pm.test(\"Проверка поля Фамилия на недопустимость ввода числового значения работает\", function () {\r",
+									"    pm.response.to.have.status(666);\r",
+									"});\r",
+									"}\r",
+									"if (Number.isFinite(Number(lastName))){\r",
+									"    pm.test(\"Проверка поля Отчество на недопустимость ввода числового значения работает\", function () {\r",
+									"    pm.response.to.have.status(666);\r",
+									"});\r",
+									"}\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "*/*"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "ru-RU,ru;q=0.9"
+							},
+							{
+								"key": "Connection",
+								"value": "keep-alive"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=UTF-8"
+							},
+							{
+								"key": "Cookie",
+								"value": "csrftoken=kTJx9JM6shb42Q5J9FUmRqtEoSHNxOo6tB8T89wjFgqob29qbhFHp1uTxc0vfvMz"
+							},
+							{
+								"key": "Origin",
+								"value": "http://130.193.37.179"
+							},
+							{
+								"key": "Referer",
+								"value": "http://130.193.37.179/app/pets"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "pet",
+									"value": "70a41546-3381-4d13-be73-3096ef0cbe0b",
+									"type": "text"
+								},
+								{
+									"key": "firstname",
+									"value": "123",
+									"description": "123",
+									"type": "text"
+								},
+								{
+									"key": "lastname",
+									"value": "123",
+									"description": "123",
+									"type": "text"
+								},
+								{
+									"key": "middlename",
+									"value": "123",
+									"description": "123",
+									"type": "text"
+								},
+								{
+									"key": "phone_num",
+									"value": "+79516145449",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "12@13.ru",
+									"description": "12@13.ru",
+									"type": "text"
+								},
+								{
+									"key": "comment",
+									"value": "test",
+									"description": "test",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/api/pet_shelter_req/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"pet_shelter_req",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "(FS)PhoneAndEmailFormat",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"let responseData = pm.response.json();\r",
+									"let phoneNumber = responseData.phone_num;\r",
+									"let emailValue = responseData.email;\r",
+									"\r",
+									"\r",
+									"if (pm.expect(phoneNumber).to.be.include(\"Номер должен соответствовать +79********* !\")){\r",
+									"    pm.test(\"Проверка поля Номер телефона на недопустимость ввода неверного формата работает\", function () {\r",
+									"    true;\r",
+									"});\r",
+									"}\r",
+									"\r",
+									"if (pm.expect(emailValue).to.be.include(\"Enter a valid email address.\")){\r",
+									"    pm.test(\"Проверка поля Email на недопустимость ввода неверного формата почтового адреса работает\", function () {\r",
+									"    true;\r",
+									"});\r",
+									"}\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "*/*"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "ru-RU,ru;q=0.9"
+							},
+							{
+								"key": "Connection",
+								"value": "keep-alive"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=UTF-8"
+							},
+							{
+								"key": "Cookie",
+								"value": "csrftoken=kTJx9JM6shb42Q5J9FUmRqtEoSHNxOo6tB8T89wjFgqob29qbhFHp1uTxc0vfvMz"
+							},
+							{
+								"key": "Origin",
+								"value": "http://130.193.37.179"
+							},
+							{
+								"key": "Referer",
+								"value": "http://130.193.37.179/app/pets"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "pet",
+									"value": "70a41546-3381-4d13-be73-3096ef0cbe0b",
+									"type": "text"
+								},
+								{
+									"key": "firstname",
+									"value": "{{$randomFirstName}}",
+									"type": "text"
+								},
+								{
+									"key": "lastname",
+									"value": "{{$randomLastName}}",
+									"type": "text"
+								},
+								{
+									"key": "middlename",
+									"value": "{{$randomFileName}}",
+									"type": "text"
+								},
+								{
+									"key": "phone_num",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "comment",
+									"value": "{{$randomWords}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/api/pet_shelter_req/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"pet_shelter_req",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "filters",
+			"item": [
+				{
+					"name": "four_filters",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"if (pm.info.iteration === 0) {\r",
+									"    pm.globals.set(\"allPositiveTest\", []);\r",
+									"}\r",
+									"\r",
+									"let filter1 = pm.iterationData.get(\"species__name\");\r",
+									"let filter2 = pm.iterationData.get(\"gender__code\");\r",
+									"let filter3 = pm.iterationData.get(\"breed__code\");\r",
+									"let filter4 = pm.iterationData.get(\"age\");\r",
+									"let arrPositiveTest = [filter1, filter2, filter3, filter4];\r",
+									"\r",
+									"pm.test(`${filter1} ${filter2} ${filter3} ${filter4}`, function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"result = Nan\", () => {\r",
+									"  const responseJson = pm.response.json();\r",
+									"  pm.expect(responseJson.count).to.eql(0);\r",
+									"});\r",
+									"\r",
+									"if (pm.response.json().count !== 0) {\r",
+									"    let arrTest = pm.globals.get(\"allPositiveTest\");\r",
+									"    arrTest.push(arrPositiveTest);\r",
+									"    pm.globals.set(\"allPositiveTest\", arrTest );\r",
+									"}\r",
+									"if (pm.info.iteration === (pm.info.iterationCount - 1)) {\r",
+									"    let all = pm.globals.get(\"allPositiveTest\");\r",
+									"    for(i = 0; i < all.length; i++){\r",
+									"        console.log(all[i]);\r",
+									"    }\r",
+									"    pm.globals.unset(\"allPositiveTest\");\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/pet/?page=1&page_size=6&species__name={{species__name}}&breed__code={{breed__code}}&gender__code={{gender__code}}&age={{age}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"pet",
+								""
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "page_size",
+									"value": "6"
+								},
+								{
+									"key": "species__name",
+									"value": "{{species__name}}"
+								},
+								{
+									"key": "breed__code",
+									"value": "{{breed__code}}"
+								},
+								{
+									"key": "gender__code",
+									"value": "{{gender__code}}"
+								},
+								{
+									"key": "age",
+									"value": "{{age}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "species__name",
+			"value": ""
+		},
+		{
+			"key": "gender__code",
+			"value": ""
+		},
+		{
+			"key": "breed__code",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "age",
+			"value": ""
+		},
+		{
+			"key": "URL",
+			"value": "http://130.193.37.179",
+			"type": "string"
+		}
+	]
+}
